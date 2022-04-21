@@ -234,3 +234,61 @@ Checkout here the CSS file- [CSS file](03-Working_with_XML/BusinessCardstyle-2.c
 If you see the XML file, you will find that root tag has been changed from business card to business cards. This is done to to have a container that can hold more than one business card. And also new business card entry has been added. Other than that, attribute, primary is being used.
 
 Checkout the CSS file above that put labels in front of the content in the XML file.
+
+## Manipulating XML with DOM
+
+In the previous section we saw how to define our first XML document and then use CSS to give the XML an appearance. The CSS approach though has some downsides.
+- First, there's no easy way to reorder the XML content using CSS. And in fact, some people would argue that CSS shouldn't even be used for things like that.
+- The second problem is that if you have an XML tag and that tag has a certain meaning and you want to take an XML tag and based upon its value it would perform some functions. CSS doesn't really give you a good way of doing that. It's mostly just a way of styling the appearance of the static XML data.
+
+In this section however, we'll see how to use the DOM, or the Document Object Model, to exercise fine level control over XML content.
+
+- The Document Object Model is a standard set of APIs or functions for working with document content. It's platform, browser, and language neutral. The examples we'll be shown here use JavaScript in a browser, but there are DOM implementations for other languages as well, like Python, Java, C#, and so on.
+
+    ![Alt](other/images/module_13_1.png)
+
+- The DOM represents the document content as a tree structure and the contents of the tree are called nodes.
+
+- Let's take a look at an example and see how this works. Suppose I had an HTML document and this is a pretty simple one here on the left. I've got my html tag and inside there I've got the head and the body, the head has a title, the body has a paragraph. The DOM represents this document as a tree structure. At the top is the HTML node, inside the HTML node are the head and the body, and these are said to be child nodes of the HTML node, which is the parent. Then inside the head and body are the title and paragraph tags respectively. And so far we've talked about tags, but the actual content of these tags are themselves nodes within the DOM. So inside the title tag there's a text string called Document, and inside the paragraph there's a text string which has the value Paragraph Text. And each one of these is a node in the document. We can express the relationship between these nodes using familiar family-style names. So, for example, the head and the body are child nodes of the HTML node, which is said to be the parent. The title is a child of the head node and the document is a child of the title node. The head and body nodes are siblings of each other.
+
+    ![Alt](other/images/module_13_2.png)
+
+Let's talk about some important DOM properties that you'll come across when using these functions.
+
+- Below 4 provide information about any given node.
+
+    ![Alt](other/images/module_13_3.png)
+
+- There are also properties for accessing the family relationships of nodes.
+
+    ![Alt](other/images/module_13_4.png)
+
+- There are functions for taking nodes and moving them around in the document.
+
+    ![Alt](other/images/module_13_5.png)
+
+- There are also properties and functions for doing things like accessing and creating document content.
+
+    ![Alt](other/images/module_13_6.png)
+
+- There are some other important miscellaneous properties.
+
+    ![Alt](other/images/module_13_7.png)
+
+### <strong>Discovering Document Content</strong>
+
+Checkout this file which demonstrate how we can use the DOM APIs to discover information that's in a document - [Example-1](04-Manipulating_XML_with_DOM/01-Example.html)
+
+You can see that I've got a pretty simple HTML file. In the HTML content, I've got an XML tag, which I'm using to embed XML content into the webpage. And in case you're wondering, yes that is perfectly legal to do within HTML. The browser will see the HTML tag and parse it like any other tag, it just won't know what to do with it, it won't do anything special with it. Now, in real world usage, you probably won't see XML used like this. Typically, XML data will be the result of some web service call or it will come from a database or you retrieve it using Ajax, and then operate on it separately. But in the interest of keeping these examples simple and self-contained, I'm just embedding the XML content right here into the webpage. Now I didn't have to use the name XML for the tag, I could just use any other tag, but I have it use XML to indicate what it is.
+
+### <strong>Discovering Document Content</strong>
+
+In the previous example, we saw how to use the DOM API to discover and extract document content. In this example, we're going to see how to use the DOM to create new document content.
+
+Checkout this HTML file, [Example-2](04-Manipulating_XML_with_DOM/02-Example.html) and CSS file [CSS File](04-Manipulating_XML_with_DOM/BusinessCardstyle-1.css)
+
+When you're working with the DOM, you can manipulate the content in any way that you want. You can use the presence of certain tags to trigger certain actions. You can reorder document content. You can selectively include content or derive new calculated content. So, using the DOM to manipulate xml is very very powerful.
+
+### <strong>Practical Example</strong>
+
+Checkout the code here, [Cafe](04-Manipulating_XML_with_DOM/practicalExample/)
