@@ -292,3 +292,42 @@ When you're working with the DOM, you can manipulate the content in any way that
 ### <strong>Practical Example</strong>
 
 Checkout the code here, [Cafe](04-Manipulating_XML_with_DOM/practicalExample/)
+
+## XML and XPath
+
+Earlier we talked about some complementary technologies for working with XML. One of those is XPath, which is what we're going to cover in this section
+
+### <strong>What is XPath?</strong>
+
+![Alt](other/images/module_17_1.png)
+
+- XPath is query language for navigating in XML documents and it can be used to find the nodes in XML document or element in HTML web page.
+
+- XPath is a W3C standard for accessing data in XML content. It's a pretty fundamental part of some other XML technologies, like XSLT, Xquery, and some others.
+
+- Essentially, XPath provides a way to extract information from XML content using path notation. You can think of this as being analogous to the way that directory paths work in a file system.
+
+![Alt](other/images/module_17_2.png)
+
+Probably the best way to see what I mean by defining a path into a document is to take a look at a few real examples. Suppose we had an HTML document that represented in tree form like this. Now, suppose we wanted to get a reference to this title tag right here. We could define a path into the XML content by writing something like this. A slash, then HTML, then another slash, then head, and then another slash, and then title. And that essentially means, starting at the HTML tag, go down to the head tag and then go down to the title tag. All right, suppose we wanted to do something a little more advanced. Suppose we wanted to get references to these three paragraph tags. Now remember, in file systems, file names have to be unique within a given directory. But, in XML, you can have multiple tags of the same name under the same parent tag. So, in this case, we would write slash HTML, and then slash body to get down to the body tag, and then slash p. That would give us all three paragraph tags. If we only wanted, say, this paragraph tag, then we would modify the path expression by putting what's called a predicate expression at the end of the path. In this case, a bracket with the number one. Now, that might be a little confusing if you're used to other programming languages where arrays are indexed using zero as a base. XPath is one based. So, that would give me the first paragraph tag.
+
+So, let's review some important XPath concepts:
+
+![Alt](other/images/module_17_3.png)
+
+- XPath has a very compact syntax and it's pretty quick to learn.
+
+- The path expression is a series of what are called location steps. So, for example, when I wrote slash HTML and then slash body, each one of those is a location stamped in the document.
+
+- There's something called the context node. That's where the path evaluation starts from, and in more advanced scenarios using XPath, you can change the context node to be whatever you want. Now, I'm not going to get into that here. But, you should just be aware that it's possible, and that it's essentially the node we start evaluating the path from.
+
+- There's also the notion of an axis. The axis is the relation between the context and the nodes that are selected by the path. So, you start at the context node. You end up at the selected nodes, and then that path is called the axis.
+
+- Another term to be familiar with, and I've already used it, is predicates. I showed an example in the previous slide when I put that little bracket with the number one on the paragraph tag to narrow down my selection. Predicates are further refinements to the selection process. You can think of them almost as a kind of filtering method.
+
+Let's take a look at some path examples-
+
+![Alt](other/images/module_17_4.png)\
+![Alt](other/images/module_17_5.png)
+
+Checkout this video to see the real application of XPath, [Automation Step by Step - What is XPath | How to create XPath | for Beginners](https://www.youtube.com/watch?v=U-MZJ6rbqi4)
