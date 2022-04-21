@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="BusinessCardstyle-1.css" type="text/css"?>
+
+<BusinessCard>
+    <name>John S.</name>
+    <phone type="home">+91-99999999999</phone>
+    <phone type="work">+91-88888888888</phone>
+    <phone type="mobile">+91-77777777777</phone>
+    <email>john@john.com</email>
+</BusinessCard>

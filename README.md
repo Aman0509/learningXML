@@ -198,3 +198,39 @@ The way you'd solve this is by defining an XML Namespace for your tag set. Now h
 ![Alt](other/images/module_8_4.png)
 
 So here in the HTML document, if there's a tag that appears in HTML, and there's no prefix, then the browser will just assume that's part of the HTML definition. So here's how you'd use this. Inside my HTML, I can define my table just like I always do. I have my table tag, my table row, table cell. But now, in order to include the furniture table definition, I simply put the prefix furn in front of the tags that appear in my furniture table Namespace. So you can see that that matches up with the XML Namespace definition I included at the top of the file. So now when the browser comes across a tag that has the furn prefix in front of it, it's going to say, "Okay, well I don't know what this is, but it's a well-formed tag and it's embedded in my content. And I'll parse it but I'm not going to try to interpret it or figure out what to do with it." This is how XML Namespaces are used, so that you can combine data from separate sources without having to worry about name collisions.
+
+## Working with XML
+
+### <strong>Our First XML</strong>
+
+Checkout here - [First XML](03-Working_with_XML/01-firstXML.xml)
+
+If you open this file in browser, you will find a message saying "This XML file does not appear to have any style information associated with it". And then it just shows the document tree here in the window. So you can see Browser is just simply showing the contents of the XML. So this is pretty straight forward, no styling information. Just the raw XML data.
+
+So let's see if we can give our XML an appearance by associating some styling information with it.
+
+### <strong>XML and CSS Style</strong>
+
+Checkout here the XML file - [First XML](03-Working_with_XML/02-firstXML.xml)
+
+Checkout here the CSS file- [CSS file](03-Working_with_XML/firstXMLstyle.css)
+
+### <strong>Styling XML tags</strong>
+
+Let's take our business card example and style it.
+
+Checkout here the XML file - [First XML](03-Working_with_XML/03-BusinessCard.xml)\
+Checkout here the CSS file- [CSS file](03-Working_with_XML/BusinessCardstyle-1.css)
+
+If you open above XML file in the browser, you will see that each one of the individual elements is being styled by itself. However, if you're paying attention, you'll notice that there are no labels. The value of the attributes are not there. So that's a different kind of problem, and we'll have to handle that problem a little bit differently.
+
+### <strong>Advanced CSS with XML</strong>
+
+We've seen previously how to style XML code using CSS and have the browser to display the contents of XML tags instead of the XML document tree. But the problem that we run into is that we don't have a way to put the labels in front of the content of the XML that's being styled. In this section we're going to see how to do that using CSS.
+
+Checkout here the XML file - [First XML](03-Working_with_XML/04-BusinessCard.xml)\
+Checkout here the CSS file- [CSS file](03-Working_with_XML/BusinessCardstyle-2.css)
+
+If you see the XML file, you will find that root tag has been changed from business card to business cards. This is done to to have a container that can hold more than one business card. And also new business card entry has been added. Other than that, attribute, primary is being used.
+
+Checkout the CSS file above that put labels in front of the content in the XML file.
