@@ -331,3 +331,69 @@ Let's take a look at some path examples-
 ![Alt](other/images/module_17_5.png)
 
 Checkout this video to see the real application of XPath, [Automation Step by Step - What is XPath | How to create XPath | for Beginners](https://www.youtube.com/watch?v=U-MZJ6rbqi4)
+
+## XML and XSLT
+
+XSLT is another one of the complimentary XML technologies that you can use to work with XML data and It builds on XPath.
+
+### <strong>What is XSLT?</strong>
+
+![Alt](other/images/module_19_1.png)
+
+- XSLT is the eXtensible Stylesheet Language Transformation specification. It's a little bit different than CSS. ***You might see that word stylesheet and think that XSLT is similar to CSS, but the important word you need to focus on is transformations.*** CSS essentially applies a set of styling rules to content in either HTML or XML files. XSLT works by applying templates to XML data.
+
+- XSLT is also written in XML syntax itself, so when you look at an XSLT stylesheet, it's written using XML code, whereas CSS is written using its own unique format.
+
+- XSLT is pretty powerful. It can transform XML data into almost anything else, such as another form of XML or PDF or Word files or HTML, it can be almost anything.
+
+-  XSLT can also perform operations directly on the data, so things that might take time working with DOM, for example, generating numbered lists or sorting information can be done pretty easily in XSLT.
+
+- Learn more about XSLT at http://www.w3.org/TR/xslt
+
+Let's talk a little bit about how you create XSLT stylesheets:
+
+![Alt](other/images/module_19_2.png)
+
+- They're defined using the \<xsl:stylesheet\> root tag.
+
+- They also typically contain one or more \<xsl:template\> tags which contain the definition for the template.
+
+- Templates are then matched to XML tags in the source XML data. Given a source XML file, the template is applied against it. The template then figures out which one or more than one of the XML elements in the source data it applies to, and then the template does its work.
+
+- Usually, the contents of the template replace the source XML and transform it into whatever the output data is.
+
+- Templates can contain other XSLT directives. You can do things like loop over content, sort content, insert new content in the output etc. In addition to being matched to source XML data, templates can also be invoked by name, almost as if they were a function.
+
+Let's take a look at how XSLT works.
+
+![Alt](other/images/module_19_3.png)
+
+You define an XML document, and this is where your source data comes from. You then define a matching XSLT stylesheet. Each of those is fed into an XSLT Transformation Engine. Now, this is usually the browser, in the case of the web, but there's also server side implementations that do this, as well. So if you're doing any back end server work, you can take XML and XSLT content and transform it on the back end before the resulting data is sent to the browser. The output of this is a result document, which contains the transformed XML into whatever you transformed it into, more XML, PDF, Word, it doesn't really matter. 
+
+### <strong>Using XSLT with XML</strong>
+
+Before we get started writing our own XSLT Stylesheets and trying them out, I'm going to review some of the more common XSLT elements.
+
+![Alt](other/images/module_19_4.png)
+
+1 - This is the <strong><em>xsl:stylesheet</em></strong> tag. This is how you define an XSL Stylesheet. 
+
+2 - The <strong><em>template</em></strong> tag contains either a match attribute, which is an xpath expression which determines how the template is matched to the content in the source XML data, or it has a name attribute. Templates with name attributes can be called as if they were functions.
+
+3 - The <strong><em>xsl:value-of</em></strong> also uses an xpath expression, and this is used to select data in the source document. Text data, numerical data, whatever the data content is in the source XML file, it's how you extract data from a matched tag. 
+
+4, 5 - You could also insert output into the transformation stream by using tags such as <strong><em>xsl:attribute</em></strong> and <strong><em>xsl:text</em></strong>. These will generate content that is placed into the transformed document.
+
+In addition to tags for matching and inserting content, there are some control tags.
+
+6 - There's a <strong><em>xsl:for-each</em></strong> tag that can be used to loop over repeating items in an XML file, and again, it used Xpath to select the nodes it loops over.
+
+7 - You can also use an <strong><em>xsl:if</em></strong> tag to perform if else comparisons.
+
+8 - In addition to <strong><em>xsl:if</em></strong>, you can use the <strong><em>xsl:choose</em></strong>, <strong><em>xsl:when</em></strong>, and <strong><em>xsl:otherwise</em></strong> construct, which is sort of similar to a switch case construct in other programming languages to perform more advanced decisions.
+
+9 - You can use the <strong><em>xsl:sort</em></strong> tag to select data for sorting content in the output stream.
+
+![Alt](other/images/module_19_5.png)
+
+Checkout this video to know more about XSLT with demo, [Automation Step by Step - XSLT Beginner Tutorial with Demo](https://www.youtube.com/watch?v=W--Yhp0m35A&list=PLhW3qG5bs-L9DloLUPwC3GdFimY5Ce_gS&index=6)
