@@ -397,3 +397,33 @@ In addition to tags for matching and inserting content, there are some control t
 ![Alt](other/images/module_19_5.png)
 
 Checkout this video to know more about XSLT with demo, [Automation Step by Step - XSLT Beginner Tutorial with Demo](https://www.youtube.com/watch?v=W--Yhp0m35A&list=PLhW3qG5bs-L9DloLUPwC3GdFimY5Ce_gS&index=6)
+
+## XSLT Examples
+
+### <strong>Simple XSLT</strong>
+
+Checkout an example here, [simpletransform.xml](07-XSLT_Examples/simpleExample/simpletransform.xml)
+and [simpletransform.xslt](07-XSLT_Examples/simpleExample/simpletransform.xslt)
+
+### <strong>XSLT and CSS</strong>
+
+XSLT and CSS are not mutually exclusive. Both can be used in tandem.
+
+Checkout an example here, [simpletransform.xml](07-XSLT_Examples/XSLT_and_CSS/simpletransform.xml), [simpletransform.xslt](07-XSLT_Examples/XSLT_and_CSS/simpletransform.xslt) and [stylesheet.css](07-XSLT_Examples/XSLT_and_CSS/stylesheet.css)
+
+### <strong>Repeating Items</strong>
+
+Checkout an example here, [repeating_items.xml](07-XSLT_Examples/repeatingItems/repeating_items.xml) and [repeating_items.xslt](07-XSLT_Examples/repeatingItems/repeating_items.xslt)
+
+If you look in 'repeating_items.xslt', you will find image tag is not used as empty tag and we are closing it.\
+The fact that I've got an \<img> with a closing image tag, because that's not normal HTML. This is an XML file, so we have to have matching closing tags. And I could've just done this to close the empty tag, but what I'm going to be doing is using the XSL attribute tag to add attributes to this image. At the end of the day, the parser will make all those look right.
+
+### <strong>Conditional Logic</strong>
+
+Example 1 (if) - [conditional_logic.xml](07-XSLT_Examples/conditionalLogic/conditional_logic.xml) and [conditional_logic.xslt](07-XSLT_Examples/conditionalLogic/conditional_logic.xslt)
+
+Example 2 (choose, when & otherwise)- [conditional_logic2.xml](07-XSLT_Examples/conditionalLogic/conditional_logic2.xml) and [conditional_logic2.xslt](07-XSLT_Examples/conditionalLogic/conditional_logic2.xslt)
+
+### <strong>Sorting</strong>
+
+Checkout an example here, [sorting.xml](07-XSLT_Examples/sorting/sorting.xml) and [sorting.xslt](07-XSLT_Examples/sorting/sorting.xslt)
