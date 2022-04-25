@@ -427,3 +427,139 @@ Example 2 (choose, when & otherwise)- [conditional_logic2.xml](07-XSLT_Examples/
 ### <strong>Sorting</strong>
 
 Checkout an example here, [sorting.xml](07-XSLT_Examples/sorting/sorting.xml) and [sorting.xslt](07-XSLT_Examples/sorting/sorting.xslt)
+
+## Document Type Definition (DTD)
+
+### <strong>What is DTD?</strong>
+
+![Alt](other/images/module_25_1.png)
+
+- There are a couple of different ways to associate sets of rules with your XML documents to help ensure their quality, and make sure that they are as error-free as possible. One of those ways is through what are called document type definitions.
+
+- Document type definitions provide a way to constrain the content of XML documents so that you can specify what kinds of tags and attributes and other types of content are and are not allowed. You can specify what kind of content can appear, where it can appear, and what kinds of content tags themselves can have.
+
+- DTDs can be included directly in an XML file or be declared as an external DTD and then associated with more than one XML document.
+
+-  DTDs are pretty simple to write, but the trade off is that they're not that powerful. There are some basic rules you can lay down, but XML schema is actually a lot more powerful.
+
+-  So why would you use a DTD?\
+Well, if you're taking your XML code and you're giving it to third parties or if you have a complex process that consumes the XML, it's always a good idea to make sure that the XML code is in a proper format. DTDs help make that possible. You can give your DTD out to people that are consuming your XML, and when the parser goes to load the XML, it will compare your DTD rule set with the content so that errors can be found quickly. Certain kinds of XML tools, like XML editors, can also use DTDs to help you create XML content on the fly so that errors won't be introduced while you're doing the creation process.
+
+### <strong>DTD Syntax</strong>
+
+Let's take a look at the basic syntax and content of a DTD file.
+
+- DTDs contain markup declarations that define document content. In other words, they lay down the rules for what an XML document that uses that DTD can and cannot contain.
+
+- DTDs can specify a variety of document content rules involving elements, attributes, entities, notations, processing instructions, comments, and parameter entity references. In other words, DTDs can specify just about every single kind of XML file content type that we looked at earlier.
+
+- Now, those last five, from entities down through parameter entity references, are pretty fairly advanced. So, the focus will only be on DTDs that define elements and attributes because those are by far the most common examples you're going to find when you're working with DTDs.
+
+- A DTD has the format of an opening angle bracket with an exclamation point, the word DOCTYPE, followed by the name of the root tag in the file, which is then followed by the document type definition itself. Now, the format you see here, with those brackets, is for including the DTD directly in the XML file. When we go to make an external DTD, the format is slightly different.
+
+![Alt](other/images/module_26_1.png)
+
+### <strong>Declaring Elements</strong>
+
+Declaring elements inside a DTD is accomplished using an elements declaration, and element declarations have the format of an angle bracket followed by exclamation point and the capital word **ELEMENT** followed by a name and a **ContentSpecification**. The **'Name'** field here is the name of the element you're going to be declaring and the content specification defines what the valid contents for the element is.
+
+![Alt](other/images/module_27_1.png)
+
+Elements can contain one of four different types of what are known as content model is.
+- First is the 'EMPTY' content model in which the element has no child elements at all. No text, no tags, nothing. A good example of this is the image tag in HTML or the horizontal rule tag and so forth. them.
+
+- Next is the 'ANY' content model, which is the opposite from empty. This means the element has no content constraints whatsoever, it can contain pretty much anything.
+
+- Then there's the 'Element' content model, which means the element can contain the child elements that you list for the content specification, but that's it. You can't put other elements that are not inside the content specification inside that element. 
+
+- Finally there's 'Mixed' content, in which the element can contain elements and character data.
+
+Let's take a look at some examples of these different types of content models.
+
+![Alt](other/images/module_27_2.png)
+
+1. Here we're defining an element named 'Miscellaneous' and the keyword 'ANY' there at the end of the element declaration means that the miscellaneous element can contain anything. There's no limit on what could be inside. It could be elements, text, pretty much anything.
+
+2. An empty element declaration would look like this. Here, we're defining an element named image and then the keyword empty goes at the end, which means it has to be empty, there's no content inside this element.
+
+3. Defining character data content is used with the keyword PCData inside parentheses. PCData means Parsed Character Data, so in this case the element name is allowed to have character data inside of it. You might be wondering if there is a way to define an element that has a C data section in it which is unparsed and the answer is remember, C data tag itself is in fact parsed. It's only the text content inside the C data section that's unparsed so there's no way to specify that an element can contain only a C data section.
+
+4. Element content means that the element in question can have other elements inside of it and there's a couple different ways to do this. 
+
+    - The first is the sequence model. In this case, we have an element named CD which can contain a title and an artist tag and it's interesting to note here that what this means is that the CD element has to have exactly one title element and it has to have exactly one artist element and they have to appear in that order.
+
+    - If you want them to appear as a choice, you would define the element content using a choice model. In this case, we have a dwelling element which is using a choice model and inside the parentheses we have three different elements that are valid for the dwelling element content. Inside of dwelling you would find either an element named house, or one named apartment or one named trailer. These element names are separated by the vertical bar character, so what this means is that you are allowed to choose one of these elements to appear in there and only one is allowed.
+
+    - To define mixed content, you would use the PC data keyword with the vertical bar and any other elements you would like to be allowed inside the element that you're defining. In this example, we're defining an element named title and the title element is allowed to have parsed character data inside of it as well as one subtitle tag. In this case, it doesn't really matter where each one appears, you can have them in any random order.
+
+Let's go back to the problem of specifying how many elements are allowed to appear inside an element that you're defining.
+
+To modify the element declaration to indicate how many elements it's allowed to contain, you can use certain modifier characters to control how many elements can appear. These characters are the question mark, plus, and star symbols.
+
+![Alt](other/images/module_27_3.png)
+
+### <strong>Declaring Attributes</strong>
+
+Declaring attributes in a DTD, is accomplished in much the same fashion as declaring elements. All attributes that you are intending to use in a document that is going to be validated by a DTD, have to be declared via an attribute list declaration.
+
+![Alt](other/images/module_28_1.png)
+
+An attribute list declaration looks like this. It has an opening angle bracket with an exclamation point, followed by the capital word 'ATTLIST', and is closed by a closing angle bracket. The 'ElementName' is the name of the element that you are defining the attributes be used on. The 'AttrName' is the name of the attribute, the 'Type' is the attributes type, and the 'DefaultDecl' defines how the attribute behaves under default situations.
+
+The attribute type can be one of three types:
+
+![Alt](other/images/module_28_2.png)
+
+1. There's the string type, which is indicated by the CDATA keyword, which is all capitals. This means the attribute can be any literal string, and you can just type in the value for the attribute.
+
+2. The enumerated type means that attribute can come from one of several potential values, but any other value would result in an error.
+
+3. And then there's the tokenized type. The tokenized type is reserved for things like ID's, and ID's refs, and other advanced features of DTD.
+
+The <strong><em><u>String type</u></em></strong> is declared like below:
+
+```
+<!ATTLIST PACKAGE status CDATA "OK">
+```
+
+In this example, we are declaring a status attribute, for a package element. In this case, it's a string attribute because of the CDATA keyword, and the default value is in the quotes there in the end, and the default value is OK. What this means is, if you don't define the status attribute on an element in a XML file, and you request the value of that attribute using the DOM API, it will still have the default value of OK, just as if you had typed it into the XML data and put it there yourself. Now of course because it's a string type, and there's no other constraints on it, you could put other values in there as well, but this is a way of telling the XML processor that if a certain attribute is not included, there is a default value.
+
+An <strong><em><u>Enumerated type</u></em></strong> looks like this:
+
+```
+<!ATTLIST DWELLING type (house|apartment|trailer)>
+```
+
+In this case we are defining an attribute, for a dwelling element, and the type can be one of the following inside the parenthesis separated by those vertical bar characters. And that's pretty similar to how you define a choice type for an element declaration. So in this case the type attribute for the dwelling element can either be house, or apartment, or trailer. It can't be something like mobile home, or condo. That would result in an invalid attribute.
+
+The default declaration is a way of defining, not just default values, but how do attributes should be viewed by the processor. There's a couple of ways you can modify the default declaration.
+
+![Alt](other/images/module_28_3.png)
+
+In the example shown in above screenshot, we have an attribute named on time. And on time is required, and it can be either yes or no.
+
+```
+<!ATTLIST PACKAGE ontime (yes|no) #IMPLIED>
+```
+
+In this case, we have an on time attribute, and it's either yes or no, and it's implied. In other words, the XML mark up may, or may not contain it.
+
+```
+<!ATTLIST PACKAGE ontime CDATA #FIXED "yes">
+```
+
+In this example, the on time attribute for the package is character data, and it's fixed to the value of yes. If you put anything else in there, that would be an error.
+
+### <strong>Building a DTD for a business card</strong>
+
+Let's build a DTD for our business card example.
+
+checkout [businesscard.xml](08-Document_Type_Definition/businesscard_1.xml)
+
+In this particular case, we've declared the document type to be in-line with the XML data. It's included here in the XML file. And that's perfectly okay, but this gets impractical when you want to work with XML documents that are non-trivial, and especially when you want to distribute multiple XML documents, you don't want them all to contain the document type definition because if the DTD ever changes, then you've got multiple places where you need to go update it. So what we're going to do next is declare it as an external document type definition, and then associate it with our XML file.
+
+### <strong>Associating a DTD with XML data</strong>
+
+Here's the Business card XML and external dtd file respectively:
+
+[businesscard.xml](08-Document_Type_Definition/businesscard_2.xml) & [businesscard.dtd](08-Document_Type_Definition/businesscard.dtd)
