@@ -212,7 +212,6 @@ So let's see if we can give our XML an appearance by associating some styling in
 ### <strong>XML and CSS Style</strong>
 
 Checkout here the XML file - [First XML](03-Working_with_XML/02-firstXML.xml)
-
 Checkout here the CSS file- [CSS file](03-Working_with_XML/firstXMLstyle.css)
 
 ### <strong>Styling XML tags</strong>
@@ -563,3 +562,126 @@ In this particular case, we've declared the document type to be in-line with the
 Here's the Business card XML and external dtd file respectively:
 
 [businesscard.xml](08-Document_Type_Definition/businesscard_2.xml) & [businesscard.dtd](08-Document_Type_Definition/businesscard.dtd)
+
+## XML Schema
+
+In this section, we're going to look at an alternative way of enforcing rules and constraints on your XML data, called XML Schema. XML Schema is an alternative to using DTDs.
+
+### <strong>What is XML Schema?</strong>
+
+![Alt](other/images/module_31_1.png)
+
+- XML Schema allows you to constrain the document content just like you do in a DTD. So, in that way, they're similar. But Schema is actually much more powerful and sophisticated than DTDs are.
+
+- They allow a much finer level of control than DTDs provide you with. So, for example, recall from the previous chapter, how we talked a little bit about how it's possible, for example, to generally control how many elements can appear inside of another element by using special characters. But there was no way to say that an element can appear only four times in another element or constrain the value of an attribute to a specific pattern. In Schema, you can do things like that. You can also do things like derive your own types and enforce those rules on your XML data.
+
+- Schema files are written using the same XML syntax that you use to write your XML data itself, whereas DTDs use their own custom syntax. It's kind of like XML, but DTDs are not really XML formatting.
+
+- Now, of course, all this power comes with a price. Schema, as a result, is a little harder and usually more robust to write than a DTD, but it provides a much finer level of control. And unlike DTDs, where you have the choice of defining a DTD inside your XML data or storing it as an external file, Schema and XML files are always stored separately from each other. The result is XML files that are far less likely to violate rules or slip through the cracks than would be the case with a DTD.
+
+![Alt](other/images/module_31_2.png)
+
+### <strong>Anatomy of a Schema</strong>
+
+Let's take a quick look at the structure of a Schema file.
+
+![Alt](other/images/module_32_1.png)
+
+- Schemas use the namespace at www.w3.org/2001/xmlschema.
+
+- Usually Schema files use the xsd namespace prefix and, if you recall, back we talked about namespaces earlier in the course and we saw them in action when we went through the XSLT examples.
+
+- A Schema definition typically begins with the xsd Schema tab and you can see I've got that here. And then inside the Schema tag, I would put in my element an attribute definitions. For example, this will define an element using the xsd element tag and you can see here in this example I've got an element that I'm declaring named ElemName and then I can put other content definitions inside my element that went along with the element. For example, I can put an xsd attribute tag in here and that would indicate that my element has an attribute named AttrName.
+
+- Now this is a pretty simple example and things can get more complex than this depending on how much control and what kind of constraints we want to put in place on the xml data.
+
+### <strong>Declaring Elements</strong>
+
+![Alt](other/images/module_33_1.png)
+
+- As mentioned earlier, elements are declared using the element tag in the Schema file and elements can be declared as either having a simple or a complex type.
+
+- Just like with DTDs, you can declare elements that have mixed, empty, or element content.
+
+- Elements can also be given a minimum and maximum number of times they are allowed to occur. Remember, you can sort of do this with DTDs, but you can't specify an exact number of times that an element is allowed to occur. Schema solves that problem. There's just a couple of attributes you need to set that controls how often an element can occur.
+
+- Elements can also be restricted to having certain values. And this is where Schema really begins to show its advantages over DTDs.
+
+Schema provides a set of built-in simple types and recall, when mentioned earlier that elements can have either a simple or a complex type. So let's look at simple types first. Note that all types will not explained separately.
+
+![Alt](other/images/module_33_2.png)
+
+So right at the top is the string type, which is a sequence of allowable XML characters.
+There's also types for boolean, decimals, and integers. And then they start to get a little bit more specialized, such as the positive integer and negative integer types that restrict content to numbers that are either larger or less than zero. There's also a type called anyURI, which restricts content to being a URI format.
+
+![Alt](other/images/module_33_3.png)
+
+There are some more specialized types, things like dates and times and date times, as well as various components of dates, such as days, months, and years.
+
+So let's take a look at a couple of examples of declaring elements.
+
+![Alt](other/images/module_33_4.png)
+
+So here we have two examples. The first one declares an element that has the name of MyElement and its type is a string. The second one defines an element named HireDate and that one has a type of date. When you declare these in your Schema file the corresponding XML file would contain elements named MyElement and HireDate and they would restricted to having, in the first case, string content and in the second case they would have to match the format for a date. You can limit how many elements appear in an XML file or inside a particular XML element within that file by using the <strong><em>micoccurs</em></strong> and <strong><em>maxoccurs</em></strong> attributes. The default value for each of these is one, so just like in DTD, if you don't define these attributes it's assumed that the element can appear at minimum once and at most once, so you have to have exactly one. Each one of these attributes is optional. In the first example there's an element I'm declaring named Friends and it has a type of string and it has a <strong><em>micoccurs</em></strong> of one and it has a <strong><em>maxoccurs</em></strong> of a special string named unbounded, which means that there's an unlimited number of these tags that could appear in my XML data. In that next example there's an element named Phone and that's also a string type. And in this case there is no <strong><em>micoccurs</em></strong> element, so it's assumed to be one. The <strong><em>maxoccurs</em></strong> attribute is set to five which means we can have a minimum of one and a maximum of five Phone elements.
+
+You can also define your own custom simple types. You do this by deriving them from the simple types that are built into Schema. So let's take a look at an example.
+
+![Alt](other/images/module_33_5.png)
+
+Suppose we had it an element in our XML data named <strong><em>InvitedGuests</em></strong>, because it represents data for a party event. We could just specify the type of this tag as a positive integer, but the problem with that would be that the positive integer allows you to specify a value all the way up to a really large number and I doubt we're going to be inviting the entire planet to our party, so we probably want to provide a much more tight restriction on the number of <strong><em>InvitedGuests</em></strong>. So inside the element we would use the <strong><em>simpleType</em></strong> tag, inside there we could use the restriction tag to declare a base value. In this case we would specify a restriction based upon the <strong><em>positiveInteger</em></strong> type, and inside the restriction we would use two tags, <strong><em>minInclusive</em></strong> and <strong><em>maxInclusive</em></strong>. Each of those is assigned a value, zero and 50. <strong><em>minInclusive</em></strong> and <strong><em>maxInclusive</em></strong> define a range, in this case of allowable values for the number of <strong><em>InvitedGuests</em></strong>. The word inclusive means that those two values, zero and 50, are included in the allowable range. So any value between zero and including zero up to and including 50 would be allowed for the InvitedGuests element content. If we didn't want to include the zero and the 50, instead of using minInclusive and maxInclusive we would use <strong><em>minExclusive</em></strong> and <strong><em>maxExclusive</em></strong>.
+
+![Alt](other/images/module_33_6.png)
+
+You can also restrict content to allowable choices and this is something similar to what we saw in DTDs. In this case suppose we have an element named dwelling and we want to restrict it to a number of allowable choices. So inside of the simpleType tag I would place another restriction, and in this case I'm basing it off of the string type. And instead of using the min and maxInclusive, now I'm using these enumeration tags to enumerate the allowable values for this dwelling tag. And here I've got values such as house, apartment, and trailer. The XML data in this element is allowed to contain one and only one of these choices for a dwelling tag.
+
+![Alt](other/images/module_33_7.png)
+
+It gets better though. You could actually restrict the content of elements based on patterns using what are known as regular expressions. So in this case we have an element named SSN that represents a Social Security number. And again, we're using the simpleType tag here to declare our own custom type and we're using a restriction which is based on string. In this case however, the restriction is a pattern specified here by the pattern tag. The value attribute of the pattern tag defines a regular expression. Now if you're not familiar with regular expressions they're a way of writing strings that define a pattern of characters that are allowed to appear for a given value. So in a nutshell this pattern means that the content for the SSN tag is restricted to a string that matches the pattern of three digits followed by a dash character followed by two digits followed by another dash character and then followed by four digits and that's the pattern that fits a US Social Security number. Any values supplied in the XML data for this type would have to match this pattern.
+
+So that pretty much covers simple types. Now let's talk a little bit about complex types.
+
+There's two ways to do this. You can use anyType for the type attribute in the element tag. So if you define an element and inside the type attribute you specify xsd anyType it pretty much means that the content of that element is not restricted in any way. However, you can also use the xsd complexType tag in the definition and this is the counterpoint to the previous examples where we were using the simpleType tag.
+
+So let's look at some examples. So how would you declare an empty element using XML Schema? So using Schema we have here an example of an empty element and the way that this works is using the element tag. To declare this element as being empty you simply put an empty complexType tag inside the element declaration. We're leaving the content model for this element empty and that's it, that's how you declare an empty element.
+
+![Alt](other/images/module_33_8.png)
+
+Like DTDs however, you can also declare elements that have mixed content. And in this case I'm declaring an element named title and I want its contents to be mixed, which means it can contain both character data and other elements. Recall earlier from the DTD section, it's possible to declare elements that contain both character data and elements and XML Schema is no different. In this case I'm using the complexType tag to declare that it has mixed content and all I need to do is put that mixed= true attribute on the complexType. And then inside the complexType I can use the sequence or choice or any other Schema declaration tag for how the content model's going to look. Now in this case it's a sequence and we're defining a sequence of subtitle tags inside the title tag. Since I didn't use minoccurs or maxoccurs it's assumed that only one subtitle is going to be allowed inside that title element.
+
+![Alt](other/images/module_33_9.png)
+
+You can also declare elements that have element content inside them. And again, this is very similar to DTDs. A sequence essentially means that the child elements have to appear in the order in which they're declared. And that's, again, very similar to the way DTD works with commas in the element declaration list. So here in this example I've got an element that I'm going to declare and its name is address. And inside the address I've got a complexType and an address element is made up of a sequence of other elements. So inside the sequence declaration I've got four elements, num, street, city, and state. And they have to appear in that order.
+
+![Alt](other/images/module_33_10.png)
+
+The next option is choice. Here I'm declaring an element named vehicle and it's a complexType. And inside the complexType I'm specifying that the elements that can appear inside the vehicle definition are one of the following list. A vehicle can be a car, bus, van, or truck, and so on.
+
+![Alt](other/images/module_33_11.png)
+
+Finally, I can use a declaration that says that certain elements can appear in any order inside the given element. So, for example, here I'm defining an element named CapitalCity. And inside the complexType tag I'm using xsd all. What the all tag essentially means is that the elements that are declared inside the all tag can appear in any order.
+
+![Alt](other/images/module_33_12.png)
+
+### <strong>Declaring Attributes</strong>
+
+![Alt](other/images/module_34_1.png)
+
+Let's take a look at how we would declare attributes. Like elements, attributes are declared using their own element in Schema and that happens to be the xsd attribute tag. Attributes, unlike elements are always simple types. There's no complex types for attributes in Schema. Any of the simple types that you saw in the earlier tables I showed can be used for elements. It can also be used for attributes. Recall from that table, we had values, such as string and boolean and date and URI and so on. Any of those types you can use in attribute declarations. Here's an example. This tag declares an attribute named age and it's type is an integer. In addition to the name and the type, you can place an attribute called use on your attribute. Use can have one of three values. It can either be optional, when in which case the attribute can be either included or eliminated in your date, it can be required, which means the attribute has to be there, otherwise it's an error, or it can be prohibited, which means that the attribute can explicitly not be used in the xml data. In addition, you can specify that attributes have a default value, as you can see in the last example where the default value is 20. I could also replace that attribute default with one named fixed and it would mean the same thing.
+
+![Alt](other/images/module_34_2.png)
+
+We can add attributes to a variety of element types and in this example, we'll take a look at adding an attribute to an element that only has character data content. Recall from the earlier chapter where we talked about elements. In this case, I've got an element named name and inside the name declaration for the element, I've got a complex type and I'm using the mixed equals true attribute, and again recall from earlier, mixed means that the element can have mixed content. It can have elements and text. However, since I'm not declaring any elements inside the complex type, that means that the content for this element can only be character data because I haven't declared any elements that can go inside here. Any element that would appear here in the xml data would be an error.
+
+![Alt](other/images/module_34_3.png)
+
+Continuing that theme, let's look at adding an attribute that has an empty content model. In this case, it's pretty much the same as the previous one, only I've just removed the mixed equals true attribute and here, I have an element named image and inside my complex type definition, I've got an attribute named source and it's a string type, but since I've removed that mixed equals true attribute from the complex type, now the element is empty. It doesn't have any content whatsoever inside of it and it only has one attribute.
+
+![Alt](other/images/module_34_4.png)
+
+You can also add attributes to elements that have element or mixed content models. Let's see an example of that. Here I have an element and its name is car and inside the declaration for this car element, I've got a complex type and it's a sequence and the car element is going to have two other elements inside of it, make and model, and those are both strings. After the sequence is where I declare the attribute and that attribute here is named year and it stype is a Gregorian year specification. This is an important point. The attribute declaration has to go after any of your sequence or choice or all the definitions inside your type, and if you recall back to the element part of this chapter, we talked about how to declare elements that have certain types of sequences or choices inside them. Attribute definitions have to go after those tags.
+
+### <strong>Building a Schema for a Business Card</strong>
+
+Checkout the Business Card XML and XML Schema respectively which is based on the concepts covered in this section:
+
+[BusinessCard.xml](09-XML_Schema/BusinessCard.xml), [BusinessCard.xsd](09-XML_Schema/BusinessCard.xsd)
