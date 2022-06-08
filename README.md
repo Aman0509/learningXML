@@ -6,6 +6,89 @@ Follow below links to learn XML:
 - [Guru99 - XML Tutorial for Beginners](https://www.guru99.com/xml-tutorials.html)
 - [Joe Marini - XML Essential Training](https://www.linkedin.com/learning/xml-essential-training-2)
 
+## Content
+
+- [Getting Started](#getting-started)
+
+    - [What is XML?](#what-is-xml)
+
+    - [XML Technologies](#xml-technologies)
+
+    - [Describing Data with XML](#describing-data-with-xml)
+
+    - [Advantages and Drawbacks of XML](#advantages-and-drawbacks-of-xml)
+
+- [XML Overview](#xml-overview)
+
+    - [Types of XML Content](#types-of-xml-content)
+
+    - [Proper XML Syntax](#proper-xml-syntax)
+
+    - [Valid Documents](#valid-documents)
+
+    - [XML Namespaces](#xml-namespaces)
+
+- [Working with XML](#working-with-xml)
+
+    - [Our First XML](#our-first-xml)
+
+    - [XML and CSS Style](#xml-and-css-style)
+
+    - [Styling XML tags](#styling-xml-tags)
+
+    - [Advanced CSS with XML](#advanced-css-with-xml)
+
+- [Manipulating XML with DOM](#manipulating-xml-with-dom)
+
+    - [Discovering Document Content](#discovering-document-content)
+
+    - [Creating Document Content](#creating-document-content)
+
+    - [Practical Example](#practical-example)
+
+- [XML and XPath](#xml-and-xpath)
+
+    - [What is XPath?](#what-is-xpath)
+
+- [XML and XSLT](#xml-and-xslt)
+
+    - [What is XSLT?](#what-is-xslt)
+
+    - [Using XSLT with XML](#using-xslt-with-xml)
+
+- [XSLT Examples](#xslt-examples)
+
+    - [Simple XSLT](#simple-xslt)
+
+    - [XSLT and CSS](#xslt-and-css)
+
+    - [Conditional Logic](#conditional-logic)
+
+    - [Sorting](#sorting)
+
+- [Document Type Definition (DTD)](#document-type-definition-dtd)
+
+    - [What is DTD?](#what-is-dtd)
+
+    - [DTD Syntax](#dtd-syntax)
+
+    - [Declaring Elements](#declaring-elements)
+
+    - [Declaring Attributes](#declaring-attributes)
+
+- [XML Schema](#xml-schema)
+
+    - [What is XML Schema?](#what-is-xml-schema)
+
+    - [Anatomy of a Schema](#anatomy-of-a-schema)
+
+    - [Declaring Elements](#declaring-elements-1)
+
+    - [Declaring Attributes](#declaring-attributes-1)
+
+    - [Building a Schema for a Business Card](#building-a-schema-for-a-business-card)
+
+
 ## Getting Started
 
 ### <strong>What is XML?</strong>
@@ -280,7 +363,7 @@ Checkout this file which demonstrate how we can use the DOM APIs to discover inf
 
 You can see that I've got a pretty simple HTML file. In the HTML content, I've got an XML tag, which I'm using to embed XML content into the webpage. And in case you're wondering, yes that is perfectly legal to do within HTML. The browser will see the HTML tag and parse it like any other tag, it just won't know what to do with it, it won't do anything special with it. Now, in real world usage, you probably won't see XML used like this. Typically, XML data will be the result of some web service call or it will come from a database or you retrieve it using Ajax, and then operate on it separately. But in the interest of keeping these examples simple and self-contained, I'm just embedding the XML content right here into the webpage. Now I didn't have to use the name XML for the tag, I could just use any other tag, but I have it use XML to indicate what it is.
 
-### <strong>Discovering Document Content</strong>
+### <strong>Creating Document Content</strong>
 
 In the previous example, we saw how to use the DOM API to discover and extract document content. In this example, we're going to see how to use the DOM to create new document content.
 
